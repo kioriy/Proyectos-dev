@@ -1,0 +1,5 @@
+C:\Users\kvffa\source\repos\EntradaSalida\EntradaSalida\obj\Debug\EntradaSalida.csproj.AssemblyReference.cache
+C:\Users\kvffa\source\repos\EntradaSalida\EntradaSalida\obj\Debug\EntradaSalida.Form1.resources
+C:\Users\kvffa\source\repos\EntradaSalida\EntradaSalida\obj\Debug\EntradaSalida.Properties.Resources.resources
+C:\Users\kvffa\source\repos\EntradaSalida\EntradaSalida\obj\Debug\EntradaSalida.csproj.GenerateResource.cache
+C:\Users\kvffa\source\repos\EntradaSalida\EntradaSalida\obj\Debug\EntradaSalida.csproj.CoreCompileInputs.cache

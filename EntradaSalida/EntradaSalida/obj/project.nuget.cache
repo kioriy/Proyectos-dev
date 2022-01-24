@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "UtEaNgbgxAVld5WbX92soo9TTv5iYgAZH+/XP9y17E2WWwyvVBNSq/Atx0HbqQgihtQx56zadT30tjRQdEkUAg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\kvffa\\source\\repos\\EntradaSalida\\EntradaSalida\\EntradaSalida.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\kvffa\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\sqlite\\3.13.0\\sqlite.3.13.0.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\stub.system.data.sqlite.core.netframework\\1.0.115.5\\stub.system.data.sqlite.core.netframework.1.0.115.5.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\system.buffers\\4.4.0\\system.buffers.4.4.0.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\system.data.sqlite\\1.0.115.5\\system.data.sqlite.1.0.115.5.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\system.data.sqlite.core\\1.0.115.5\\system.data.sqlite.core.1.0.115.5.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\system.data.sqlite.ef6\\1.0.115.5\\system.data.sqlite.ef6.1.0.115.5.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\system.data.sqlite.linq\\1.0.115.5\\system.data.sqlite.linq.1.0.115.5.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\system.numerics.vectors\\4.4.0\\system.numerics.vectors.4.4.0.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,14 +1,11 @@
 #define DEV
 using System.Data;
-using System.Data.SQLite;
-using Mono.Data.Sqlite;
-using System.Configuration;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using System;
-using System.IO;
+using System.Data.SQLite;
+using Newtonsoft.Json;
 
-namespace miPV
+namespace EntradaSalida
 {
     public class BD
     {
