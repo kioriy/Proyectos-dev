@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kvffa\\source\\repos\\EntradaSalida\\EntradaSalida\\EntradaSalida.csproj": {}
+    "C:\\Users\\kvffa\\Documents\\mario\\proyectos\\EntradasSalidas\\EntradaSalida\\EntradaSalida\\EntradaSalida.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kvffa\\source\\repos\\EntradaSalida\\EntradaSalida\\EntradaSalida.csproj": {
+    "C:\\Users\\kvffa\\Documents\\mario\\proyectos\\EntradasSalidas\\EntradaSalida\\EntradaSalida\\EntradaSalida.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kvffa\\source\\repos\\EntradaSalida\\EntradaSalida\\EntradaSalida.csproj",
+        "projectUniqueName": "C:\\Users\\kvffa\\Documents\\mario\\proyectos\\EntradasSalidas\\EntradaSalida\\EntradaSalida\\EntradaSalida.csproj",
         "projectName": "EntradaSalida",
-        "projectPath": "C:\\Users\\kvffa\\source\\repos\\EntradaSalida\\EntradaSalida\\EntradaSalida.csproj",
+        "projectPath": "C:\\Users\\kvffa\\Documents\\mario\\proyectos\\EntradasSalidas\\EntradaSalida\\EntradaSalida\\EntradaSalida.csproj",
         "packagesPath": "C:\\Users\\kvffa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kvffa\\source\\repos\\EntradaSalida\\EntradaSalida\\obj\\",
+        "outputPath": "C:\\Users\\kvffa\\Documents\\mario\\proyectos\\EntradasSalidas\\EntradaSalida\\EntradaSalida\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -40,6 +40,10 @@
       "frameworks": {
         "net472": {
           "dependencies": {
+            "MassTransit": {
+              "target": "Package",
+              "version": "[7.3.1, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"

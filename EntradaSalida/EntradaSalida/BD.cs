@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using System.Data.SQLite;
 using Newtonsoft.Json;
+using MassTransit.Clients;
 
 namespace EntradaSalida
 {

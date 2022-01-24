@@ -1,21 +1,63 @@
 {
   "version": 2,
-  "dgSpecHash": "UtEaNgbgxAVld5WbX92soo9TTv5iYgAZH+/XP9y17E2WWwyvVBNSq/Atx0HbqQgihtQx56zadT30tjRQdEkUAg==",
+  "dgSpecHash": "wUh2bY6CN5CnkYRDUCq/SwIiwBSd/2mWVcL0kYBS4zXzFltx/Zhf4UWjM95TamMFLnPCNiAh1Xtt7lh8XWue8Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kvffa\\source\\repos\\EntradaSalida\\EntradaSalida\\EntradaSalida.csproj",
+  "projectFilePath": "C:\\Users\\kvffa\\Documents\\mario\\proyectos\\EntradasSalidas\\EntradaSalida\\EntradaSalida\\EntradaSalida.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\kvffa\\.nuget\\packages\\automatonymous\\5.1.3\\automatonymous.5.1.3.nupkg.sha512",
     "C:\\Users\\kvffa\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\greenpipes\\4.0.1\\greenpipes.4.0.1.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\masstransit\\7.3.1\\masstransit.7.3.1.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.1.1\\microsoft.extensions.logging.abstractions.2.1.1.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\newid\\3.0.3\\newid.3.0.3.nupkg.sha512",
     "C:\\Users\\kvffa\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\kvffa\\.nuget\\packages\\sqlite\\3.13.0\\sqlite.3.13.0.nupkg.sha512",
     "C:\\Users\\kvffa\\.nuget\\packages\\stub.system.data.sqlite.core.netframework\\1.0.115.5\\stub.system.data.sqlite.core.netframework.1.0.115.5.nupkg.sha512",
-    "C:\\Users\\kvffa\\.nuget\\packages\\system.buffers\\4.4.0\\system.buffers.4.4.0.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\kvffa\\.nuget\\packages\\system.data.sqlite\\1.0.115.5\\system.data.sqlite.1.0.115.5.nupkg.sha512",
     "C:\\Users\\kvffa\\.nuget\\packages\\system.data.sqlite.core\\1.0.115.5\\system.data.sqlite.core.1.0.115.5.nupkg.sha512",
     "C:\\Users\\kvffa\\.nuget\\packages\\system.data.sqlite.ef6\\1.0.115.5\\system.data.sqlite.ef6.1.0.115.5.nupkg.sha512",
     "C:\\Users\\kvffa\\.nuget\\packages\\system.data.sqlite.linq\\1.0.115.5\\system.data.sqlite.linq.1.0.115.5.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512",
     "C:\\Users\\kvffa\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
-    "C:\\Users\\kvffa\\.nuget\\packages\\system.numerics.vectors\\4.4.0\\system.numerics.vectors.4.4.0.nupkg.sha512",
-    "C:\\Users\\kvffa\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
+    "C:\\Users\\kvffa\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\system.reflection.emit.lightweight\\4.7.0\\system.reflection.emit.lightweight.4.7.0.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\system.text.encodings.web\\5.0.1\\system.text.encodings.web.5.0.1.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\system.text.json\\5.0.2\\system.text.json.5.0.2.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\system.threading.channels\\4.7.1\\system.threading.channels.4.7.1.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
+    "C:\\Users\\kvffa\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Degradación del paquete detectada: System.Memory de 4.5.4 a 4.5.3. Haga referencia al paquete directamente desde el proyecto para seleccionar una versión diferente. \r\n EntradaSalida -> MassTransit 7.3.1 -> System.Diagnostics.DiagnosticSource 4.7.1 -> System.Memory (>= 4.5.4) \r\n EntradaSalida -> System.Memory (>= 4.5.3)",
+      "libraryId": "System.Memory",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.7.2",
+        ".NETFramework,Version=v4.7.2/win",
+        ".NETFramework,Version=v4.7.2/win-x64",
+        ".NETFramework,Version=v4.7.2/win-x86"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Degradación del paquete detectada: System.Memory de 4.5.4 a 4.5.3. Haga referencia al paquete directamente desde el proyecto para seleccionar una versión diferente. \r\n EntradaSalida -> MassTransit 7.3.1 -> System.Text.Json 5.0.2 -> System.Memory (>= 4.5.4) \r\n EntradaSalida -> System.Memory (>= 4.5.3)",
+      "libraryId": "System.Memory",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.7.2",
+        ".NETFramework,Version=v4.7.2/win",
+        ".NETFramework,Version=v4.7.2/win-x64",
+        ".NETFramework,Version=v4.7.2/win-x86"
+      ]
+    }
+  ]
 }
