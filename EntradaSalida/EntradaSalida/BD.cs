@@ -1,14 +1,16 @@
 #define DEV
 using System.Data;
-using System.Collections.Generic;
-using System;
 using System.Data.SQLite;
+using System.Configuration;
+using System.Collections.Generic;
 using Newtonsoft.Json;
-using MassTransit.Clients;
+using System;
+using System.IO;
+using System.Windows.Forms;
 
 namespace EntradaSalida
 {
-    public class BD
+    public class DB
     {
         #region variables
         private string SetValuesUpdate { get; set; }
@@ -35,7 +37,8 @@ namespace EntradaSalida
             if ((int)Environment.OSVersion.Platform == 2)
             {
                 //System.Windows.Forms.MessageBox.Show("entre a la version test");
-                parametrosConexion = "URI = file:dbmiPV.db; Version = 3; New = False; Compress = True;";
+                // parametrosConexion = "URI = file:dbmiPV.db; Version = 3; New = False; Compress = True;";
+                parametrosConexion = "URI = file:C://Users/kvffa/Documents/mario/proyectos/EntradasSalidas/baseCETI.db; Version = 3; New = false; Compress = True;";
             }
             else if ((int)Environment.OSVersion.Platform == 4)
             {
@@ -43,15 +46,15 @@ namespace EntradaSalida
                 //{
                 //    File.ReadAllText("/home/pi/Dropbox-Uploader/MiPVGTest/test.json");
 
-                    //ruta de la base de datos en versión TEST
-                    //System.Windows.Forms.MessageBox.Show("entre a la version test");
+                //ruta de la base de datos en versión TEST
+                //System.Windows.Forms.MessageBox.Show("entre a la version test");
                 //    parametrosConexion = "Data Source = /home/pi/Dropbox-Uploader/MiPVGTest/dbmiPV.db; Version = 3; New = False; Compress = True;";
                 //}
                 //catch(FileNotFoundException) 
                 //{
-                    //ruta de la base de datos en varsión RELEASE
-                    //System.Windows.Forms.MessageBox.Show("entre a la version release");
-                    parametrosConexion = "Data Source = /home/pi/Dropbox-Uploader/MiPVG/dbmiPV.db; Version = 3; New = False; Compress = True;";
+                //ruta de la base de datos en varsión RELEASE
+                //System.Windows.Forms.MessageBox.Show("entre a la version release");
+                parametrosConexion = "Data Source = /home/pi/Dropbox-Uploader/MiPVG/dbmiPV.db; Version = 3; New = False; Compress = True;";
                 //}
             }
 
@@ -60,7 +63,7 @@ namespace EntradaSalida
 
             try
             {
-                conexionBD.Open(); 
+                conexionBD.Open();
                 estadoConexion = conexionBD.State;
                 return true;
             }
@@ -79,7 +82,7 @@ namespace EntradaSalida
         #endregion
 
         #region metodos
-        public void attributes(string table) 
+        public void attributes(string table)
         {
             bool flag = false;
             Attributes = "";
@@ -99,7 +102,7 @@ namespace EntradaSalida
                     else
                     {
                         /*Nota importante para mi yo del futuro
-                        este algoritmo serpara la columna con de la llave primaria
+                        este algoritmo separa la columna con de la llave primaria
                         del resto de los atributos, para usarla a conveniencia de maneras separadas*/
                         flag = true;
                         IdAttribute = $"{dr["name"]},";
@@ -138,13 +141,13 @@ namespace EntradaSalida
             SetValuesUpdate = SetValuesUpdate.Trim().TrimEnd(',');
         }
 
-        public bool execute(string table, string values, string action, string where) 
+        public bool execute(string table, string values, string action, string where)
         {
             attributes(table);
-            
+
             switch (action)
             {
-                case "insert": 
+                case "insert":
                     return insert($"INSERT INTO {table} ({Attributes}) VALUES ({values})");
 
                 case "multiinsert":
@@ -155,7 +158,7 @@ namespace EntradaSalida
 
                 case "update":
                     setValuesUpdate(values);
-                    return  insert($"UPDATE {table} SET {SetValuesUpdate} {where}");
+                    return insert($"UPDATE {table} SET {SetValuesUpdate} {where}");
 
                 case "delete":
                     return insert($"DELETE FROM {table} {where}");
@@ -204,7 +207,7 @@ namespace EntradaSalida
                     return false;
                 }
             }
-            catch (SQLiteException e) 
+            catch (SQLiteException e)
             {
                 Mensaje.getMessage(messageResponse.actionFail.ToString());
                 Mensaje.result_bool = false;
@@ -260,42 +263,6 @@ namespace EntradaSalida
 
             //$"{SELECT} * {FROM} {tabla} {WHERE} {atributo} {igual} " +
             //$"{abrir_parentesis} {SELECT} {MAX_ID}{abrir_parentesis}{atributo}{cerrar_parentesis} {FROM} {tabla}";
-        }
-
-        public string clienteCredito()
-        {
-            return "SELECT VENTA.id_venta AS Folio, CLIENTE.nombre AS cliente, SUM(DETALLE_VENTA.cantidad * PRODUCTO.precio_venta) AS total, VENTA.fecha FROM `VENTA` INNER JOIN DETALLE_VENTA ON VENTA.`id_venta` = DETALLE_VENTA.`fk_id_venta` INNER JOIN CLIENTE ON VENTA.fk_id_cliente = CLIENTE.id_cliente INNER JOIN PRODUCTO ON DETALLE_VENTA.fk_id_producto = PRODUCTO.id_producto WHERE VENTA.credito = 1 GROUP BY VENTA.id_venta";
-            //return "SELECT VENTA.id_venta AS Folio, CLIENTE.nombre AS cliente, SUM(DETALLE_VENTA.cantidad * PRODUCTO.precio_venta) AS total, strftime(VENTA.fecha,'%d-%m-%Y') AS fecha FROM `VENTA` INNER JOIN DETALLE_VENTA ON VENTA.`id_venta` = DETALLE_VENTA.`fk_id_venta` INNER JOIN CLIENTE ON VENTA.fk_id_cliente = CLIENTE.id_cliente INNER JOIN PRODUCTO ON DETALLE_VENTA.fk_id_producto = PRODUCTO.id_producto WHERE VENTA.credito = 1 GROUP BY VENTA.id_venta";
-        }
-
-        public string corteCaja()
-        {
-            return "SELECT " +
-                "VENTA.id_venta AS Folio, " +
-                "USUARIO.usuario," +
-                "CLIENTE.nombre As cliente , " +
-                "PRODUCTO.descripcion, " +
-                "DETALLE_VENTA.cantidad, " +
-                "PRODUCTO.precio_venta, " +
-                "(DETALLE_VENTA.`cantidad` *PRODUCTO.precio_venta) AS total," +
-                "VENTA.fecha, " +
-                "PRODUCTO.id_producto " +
-                "FROM `VENTA` INNER JOIN `CLIENTE` , `DETALLE_VENTA` , `PRODUCTO`, USUARIO " +
-                "ON VENTA.`id_venta` = DETALLE_VENTA.`fk_id_venta` AND " +
-                "CLIENTE.id_cliente = VENTA.fk_id_cliente AND " +
-                "PRODUCTO.id_producto = DETALLE_VENTA.fk_id_producto AND " +
-                "VENTA.fk_id_usuario = USUARIO.id_usuario AND " +
-                "VENTA.credito = 0 ORDER BY VENTA.id_venta DESC";//"SELECT VENTA.id_venta AS Folio, CLIENTE.nombre As cliente , PRODUCTO.descripcion, DETALLE_VENTA.cantidad, PRODUCTO.precio_venta, (DETALLE_VENTA.`cantidad` * PRODUCTO.precio_venta) AS total,  VENTA.fecha  FROM `VENTA` INNER JOIN `CLIENTE` , `DETALLE_VENTA` , `PRODUCTO` WHERE VENTA.`id_venta` = DETALLE_VENTA.`fk_id_venta` AND CLIENTE.id_cliente = VENTA.fk_id_cliente AND PRODUCTO.id_producto = DETALLE_VENTA.fk_id_producto AND VENTA.credito = 0 ORDER BY VENTA.id_venta DESC";
-        }
-
-        public string eliminarVenta()
-        {
-            return "DELETE FROM VENTA WHERE id_venta = (SELECT MAX(id_venta) FROM `VENTA`)";
-        }
-
-        public string queryEliminarDetalleVenta()
-        {
-            return $"DELETE FROM detalle_venta WHERE fk_id_venta = (SELECT MAX(id_venta) FROM DETALLE VENTA)";
         }
         #endregion
 
@@ -372,7 +339,27 @@ namespace EntradaSalida
 
             dgvLlenar.DataSource = ds.Tables[0];
         }
+        #region mario
+        public DataTable selectGlobal(string cmd)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                queryCommand = new SQLiteCommand (cmd, conexionBD);
+                adapter = new SQLiteDataAdapter(queryCommand);
+                adapter.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+
+            }
+            
+            return dt;
+        }
+        #endregion
         #endregion
         #endregion
     }
+
 }
