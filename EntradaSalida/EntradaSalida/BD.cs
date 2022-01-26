@@ -340,23 +340,7 @@ namespace EntradaSalida
             dgvLlenar.DataSource = ds.Tables[0];
         }
         #region mario
-        public DataTable selectGlobal(string cmd)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                queryCommand = new SQLiteCommand (cmd, conexionBD);
-                adapter = new SQLiteDataAdapter(queryCommand);
-                adapter.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-
-            }
-            
-            return dt;
-        }
+        
         #endregion
         #endregion
         #endregion

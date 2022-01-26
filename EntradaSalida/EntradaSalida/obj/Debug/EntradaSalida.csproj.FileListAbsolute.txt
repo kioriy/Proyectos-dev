@@ -37,4 +37,4 @@ C:\Users\kvffa\Documents\mario\proyectos\EntradasSalidas\EntradaSalida\EntradaSa
 C:\Users\kvffa\Documents\mario\proyectos\EntradasSalidas\EntradaSalida\EntradaSalida\bin\Debug\System.ValueTuple.dll
 C:\Users\kvffa\Documents\mario\proyectos\EntradasSalidas\EntradaSalida\EntradaSalida\obj\Debug\EntradaSalida.exe
 C:\Users\kvffa\Documents\mario\proyectos\EntradasSalidas\EntradaSalida\EntradaSalida\obj\Debug\EntradaSalida.pdb
-C:\Users\kvffa\Documents\mario\proyectos\EntradasSalidas\EntradaSalida\EntradaSalida\obj\Debug\EntradaSalida.Estadisticas.resources
+C:\Users\kvffa\Documents\mario\proyectos\EntradasSalidas\EntradaSalida\EntradaSalida\obj\Debug\EntradaSalida.AsistenciasDelDiaForm.resources

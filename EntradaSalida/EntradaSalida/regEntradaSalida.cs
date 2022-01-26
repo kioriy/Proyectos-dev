@@ -7,35 +7,25 @@ using System.Windows.Forms;
 
 namespace EntradaSalida
 {
-    class Alumno : DB
+    class RegEntradaSalida : DB
     {
         #region atributos
         //public List<Producto> listaIdProducto;
-        public int id_alumnos { get; set; }
-        public string nombre_alumno { get; set; }
-        public string direccion { get; set; }
-        public string grado { get; set; }
-        public string grupo { get; set; }
-        public string curp { get; set; }
-        public string telefono { get; set; }
-        public string apellido_alumno{ get; set; }
-        public string tutor { get; set; }
-        public string telefono2 { get; set; }
-        public string tipo_sangre { get; set; }
-        public string nivel_estudios { get; set; }
-     /*   public int numero_lista { get; set; }*/
-        public string domicilio { get; set; }
-        //private string respuesta = "";
-
+        public int id_entrada_salida { get; set; }
+        public string fecha { get; set; }
+        public string hora_entrada { get; set; }
+        public string esta_dentro { get; set; }
+        public string hora_salida { get; set; }
+        public int fk_id_alumnos { get; set; }
         public string table { get; set; }
 
         public List<Alumno> list_alumno = new List<Alumno>();
         #endregion
 
         #region constructores
-        public Alumno()
+        public RegEntradaSalida()
         {
-            table = "ALUMNO";
+            table = "Entradas_salidas";
         }
         #endregion
 
@@ -54,7 +44,7 @@ namespace EntradaSalida
 
         public void query(string valuesString, string where)
         {
-            execute(table, $"{valuesString}","query", where);
+            execute(table, $"{valuesString}", "query", where);
         }
 
         public void free(string query)
@@ -62,7 +52,7 @@ namespace EntradaSalida
             execute(table, "", "free", query);
         }
 
-      /*/*  public int idCliente(string nombre)
+        public int idCliente(string nombre)
         {
             if (nombre == "")
             {
@@ -75,13 +65,13 @@ namespace EntradaSalida
         #endregion
 
         #region METODOS INTERFACE
-        /*public void loadComboBox(ComboBox cb, ref bool entra)
+        public void loadComboBox(ComboBox cb, ref bool entra)
         {
             execute(table, "", "query", "");
 
             cb.DataSource = null;
 
-            list_alumno= list<Alumno>();
+            list_alumno = list<Alumno>();
 
             entra = false;
             cb.DataSource = list_alumno;
@@ -110,8 +100,8 @@ namespace EntradaSalida
             catch (Exception)
             {
                 
-            }
-        }*/
+            }*/
+        }
 
         //public void loadDgv(DataGridView dgv)
         //{
@@ -136,21 +126,14 @@ namespace EntradaSalida
         public string values()
         {
             return
-            $"\"{id_alumnos}\"," +
-            $"\"{nombre_alumno.ToUpper().Trim()}\"," +
-            $"\"{apellido_alumno.ToUpper().Trim()}\"," +
-            $"\"{grado.ToUpper().Trim()}\"," +
-            $"\"{grupo.ToUpper().Trim()}\"," +
-            $"\"{tutor.ToUpper().Trim()}\"," +
-            $"\"{telefono.ToUpper().Trim()}\"," +
-            $"\"{telefono2.ToUpper().Trim()}\"," +
-            $"\"{tipo_sangre.ToUpper().Trim()}\"," +
-            $"\"{nivel_estudios.ToUpper().Trim()}\"," +
-          /*  $"\"{numero_lista}\"," +*/
-            $"\"{domicilio.ToUpper().Trim()}\"," +
-            $"\"{curp.ToUpper().Trim()}\"";
-            
-            
+            $"\"{id_entrada_salida}\"," +
+            $"\"{fecha.ToUpper().Trim()}\"," +
+            $"\"{hora_entrada.ToUpper().Trim()}\"," +
+            $"\"{esta_dentro.ToUpper().Trim()}\"," +
+            $"\"{hora_salida.ToUpper().Trim()}\"," +
+            $"\"{fk_id_alumnos}\"";
+
+
         }
         #endregion
     }
