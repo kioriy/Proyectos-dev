@@ -53,6 +53,8 @@ namespace EntradaSalida
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Estadisticas es = new Estadisticas();
+            es.Visible = true;
             string today = DateTime.Now.Date.ToShortDateString();
             //today = "06/12/2021";
             today += " ";

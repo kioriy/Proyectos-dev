@@ -58,6 +58,12 @@
     <Compile Include="AsistenciasDelDia.Designer.cs">
       <DependentUpon>AsistenciasDelDia.cs</DependentUpon>
     </Compile>
+    <Compile Include="Estadisticas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Estadisticas.Designer.cs">
+      <DependentUpon>Estadisticas.cs</DependentUpon>
+    </Compile>
     <Compile Include="List.cs" />
     <Compile Include="Mensaje.cs" />
     <Compile Include="Program.cs" />
@@ -65,6 +71,9 @@
     <Compile Include="regEntradaSalida.cs" />
     <EmbeddedResource Include="AsistenciasDelDia.resx">
       <DependentUpon>AsistenciasDelDia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Estadisticas.resx">
+      <DependentUpon>Estadisticas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
