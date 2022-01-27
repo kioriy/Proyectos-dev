@@ -55,8 +55,8 @@ namespace EntradaSalida
         {
             Estadisticas es = new Estadisticas();
             es.Visible = true;
-            string today = DateTime.Now.Date.ToShortDateString();
-            //today = "06/12/2021";
+            string today = DateTime.Now.ToString("dd/MM/yyyy");
+            today = "06/12/2021";
             today += " ";
             string estado = comboBoxEstado.Text;
             string grado = comboBoxGrado.Text;
@@ -70,7 +70,7 @@ namespace EntradaSalida
                     alumno.select("select * from ALUMNO where grado=\"" + grado + "\" and grupo=\"" + grupo + "\"", "ALUMNO");
                     List<Alumno> listaAlumno = new List<Alumno>();
                     listaAlumno = alumno.list<Alumno>();
-
+                  /// implementar//// listaAlumno.Distinct();
 
                     RegEntradaSalida regentradasalida = new RegEntradaSalida();
                     regentradasalida.select("select * from Entradas_salidas where fecha =" + "\"" + today + "\"", "Entradas_salidas"); ;

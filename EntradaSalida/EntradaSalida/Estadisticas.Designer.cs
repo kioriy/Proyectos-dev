@@ -82,9 +82,10 @@ namespace EntradaSalida
             this.labelAsistenciaToday.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAsistenciaToday.Location = new System.Drawing.Point(10, 30);
             this.labelAsistenciaToday.Name = "labelAsistenciaToday";
-            this.labelAsistenciaToday.Size = new System.Drawing.Size(68, 31);
+            this.labelAsistenciaToday.Size = new System.Drawing.Size(53, 31);
             this.labelAsistenciaToday.TabIndex = 4;
-            this.labelAsistenciaToday.Text = "30%";
+            this.labelAsistenciaToday.Text = "0%";
+            this.labelAsistenciaToday.Click += new System.EventHandler(this.labelAsistenciaToday_Click);
             // 
             // labelAsistenciaYear
             // 
@@ -92,9 +93,9 @@ namespace EntradaSalida
             this.labelAsistenciaYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAsistenciaYear.Location = new System.Drawing.Point(10, 90);
             this.labelAsistenciaYear.Name = "labelAsistenciaYear";
-            this.labelAsistenciaYear.Size = new System.Drawing.Size(68, 31);
+            this.labelAsistenciaYear.Size = new System.Drawing.Size(53, 31);
             this.labelAsistenciaYear.TabIndex = 5;
-            this.labelAsistenciaYear.Text = "30%";
+            this.labelAsistenciaYear.Text = "0%";
             // 
             // labelGoodAsistencia
             // 
@@ -102,9 +103,9 @@ namespace EntradaSalida
             this.labelGoodAsistencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelGoodAsistencia.Location = new System.Drawing.Point(10, 150);
             this.labelGoodAsistencia.Name = "labelGoodAsistencia";
-            this.labelGoodAsistencia.Size = new System.Drawing.Size(68, 31);
+            this.labelGoodAsistencia.Size = new System.Drawing.Size(23, 31);
             this.labelGoodAsistencia.TabIndex = 6;
-            this.labelGoodAsistencia.Text = "30%";
+            this.labelGoodAsistencia.Text = "-";
             // 
             // labelBadAsistencia
             // 
@@ -112,9 +113,9 @@ namespace EntradaSalida
             this.labelBadAsistencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelBadAsistencia.Location = new System.Drawing.Point(10, 210);
             this.labelBadAsistencia.Name = "labelBadAsistencia";
-            this.labelBadAsistencia.Size = new System.Drawing.Size(68, 31);
+            this.labelBadAsistencia.Size = new System.Drawing.Size(23, 31);
             this.labelBadAsistencia.TabIndex = 7;
-            this.labelBadAsistencia.Text = "30%";
+            this.labelBadAsistencia.Text = "-";
             // 
             // panel1
             // 
@@ -141,6 +142,7 @@ namespace EntradaSalida
             this.Controls.Add(this.label1);
             this.Name = "Estadisticas";
             this.Text = "Estadisticas";
+            this.Load += new System.EventHandler(this.Estadisticas_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
