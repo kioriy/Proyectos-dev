@@ -278,7 +278,7 @@ namespace EntradaSalida
 
         public List<T> list<T>()
         {
-            if (Json != "false" && Json != null)
+            if (Json != "" && Json != null)
             {
                 return JsonConvert.DeserializeObject<List<T>>(Json);
             }
@@ -287,7 +287,7 @@ namespace EntradaSalida
 
         public DataTable dataTable()
         {
-            if (Json != "false")
+            if (Json != "" && Json != null)
             {
                 dt = new DataTable();
                 dt = (DataTable)JsonConvert.DeserializeObject(Json, typeof(DataTable));

@@ -30,14 +30,11 @@ namespace EntradaSalida
         private void InitializeComponent()
         {
             this.comboBoxEstado = new System.Windows.Forms.ComboBox();
-            this.comboBoxGrado = new System.Windows.Forms.ComboBox();
+            this.comboBoxGradoGrupo = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.sqLiteCommand1 = new System.Data.SQLite.SQLiteCommand();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.comboBoxGrupo = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,13 +46,14 @@ namespace EntradaSalida
             this.comboBoxEstado.Size = new System.Drawing.Size(92, 21);
             this.comboBoxEstado.TabIndex = 1;
             // 
-            // comboBoxGrado
+            // comboBoxGradoGrupo
             // 
-            this.comboBoxGrado.FormattingEnabled = true;
-            this.comboBoxGrado.Location = new System.Drawing.Point(130, 25);
-            this.comboBoxGrado.Name = "comboBoxGrado";
-            this.comboBoxGrado.Size = new System.Drawing.Size(92, 21);
-            this.comboBoxGrado.TabIndex = 2;
+            this.comboBoxGradoGrupo.FormattingEnabled = true;
+            this.comboBoxGradoGrupo.Location = new System.Drawing.Point(130, 25);
+            this.comboBoxGradoGrupo.Name = "comboBoxGradoGrupo";
+            this.comboBoxGradoGrupo.Size = new System.Drawing.Size(92, 21);
+            this.comboBoxGradoGrupo.TabIndex = 2;
+            this.comboBoxGradoGrupo.SelectedIndexChanged += new System.EventHandler(this.comboBoxGradoGrupo_SelectedIndexChanged_1);
             // 
             // label1
             // 
@@ -75,16 +73,6 @@ namespace EntradaSalida
             this.label2.TabIndex = 4;
             this.label2.Text = "Grado.";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(370, 25);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Consultar.";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // sqLiteCommand1
             // 
             this.sqLiteCommand1.CommandText = null;
@@ -97,35 +85,15 @@ namespace EntradaSalida
             this.dataGridView1.Size = new System.Drawing.Size(435, 215);
             this.dataGridView1.TabIndex = 6;
             // 
-            // comboBoxGrupo
-            // 
-            this.comboBoxGrupo.FormattingEnabled = true;
-            this.comboBoxGrupo.Location = new System.Drawing.Point(250, 25);
-            this.comboBoxGrupo.Name = "comboBoxGrupo";
-            this.comboBoxGrupo.Size = new System.Drawing.Size(92, 21);
-            this.comboBoxGrupo.TabIndex = 7;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(250, 6);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Grupo.";
-            // 
             // AsistenciasDelDiaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 281);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBoxGrupo);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBoxGrado);
+            this.Controls.Add(this.comboBoxGradoGrupo);
             this.Controls.Add(this.comboBoxEstado);
             this.Name = "AsistenciasDelDiaForm";
             this.Text = "Asistencias del dia.";
@@ -138,14 +106,11 @@ namespace EntradaSalida
 
         #endregion
         private System.Windows.Forms.ComboBox comboBoxEstado;
-        private System.Windows.Forms.ComboBox comboBoxGrado;
+        private System.Windows.Forms.ComboBox comboBoxGradoGrupo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
         private System.Data.SQLite.SQLiteCommand sqLiteCommand1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.ComboBox comboBoxGrupo;
-        private System.Windows.Forms.Label label3;
     }
 }
 

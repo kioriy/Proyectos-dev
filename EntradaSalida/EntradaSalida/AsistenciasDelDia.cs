@@ -14,132 +14,71 @@ namespace EntradaSalida
 {
     public partial class AsistenciasDelDiaForm : Form
     {
+        private RegEntradaSalida regEntrada= new RegEntradaSalida();
         public AsistenciasDelDiaForm()
         {
             InitializeComponent();
+            comboBoxGradoGrupo.SelectedIndexChanged -= comboBoxGradoGrupo_SelectedIndexChanged_1;
+            string today = DateTime.Now.ToString("dd/MM/yyyy");
+            today = "06/12/2021";
+            today += " ";
+            regEntrada.select($"SELECT A.grupo, A.grado, ES.fk_id_alumnos, A.nombre_alumno, ES.Fecha, ES.hora_entrada, ES.hora_salida FROM Entradas_salidas AS ES INNER JOIN ALUMNO AS A ON ES.fk_id_alumnos = A.id_alumnos WHERE Fecha = \"{today}\""
+           , "Entradas_salidas");
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             comboBoxEstado.Items.Add("Asistentes");
             comboBoxEstado.Items.Add("Faltantes");
+            comboBoxEstado.SelectedIndex=0;
             comboBoxEstado.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxGrado.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxGrupo.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxGradoGrupo.DropDownStyle = ComboBoxStyle.DropDownList;
             Alumno alumno = new Alumno();
-            alumno.select("select DISTINCT grado from ALUMNO", "ALUMNO");
-            List<Alumno> listaAlumno = new List<Alumno>();
-            listaAlumno = alumno.list<Alumno>();
-            for (int x = 0; x < listaAlumno.Count; x++) 
-            {
-                comboBoxGrado.Items.Add(listaAlumno[x].grado + "º");
-            }
-            alumno = new Alumno();
-            alumno.select("select DISTINCT grupo from ALUMNO", "ALUMNO");
-            listaAlumno = new List<Alumno>();
-            listaAlumno = alumno.list<Alumno>();
-            for (int x = 0; x < listaAlumno.Count; x++)
-            {
-                comboBoxGrupo.Items.Add(listaAlumno[x].grupo);
-            }
-            comboBoxGrupo.SelectedIndex = 0;
-            comboBoxEstado.SelectedIndex = 0;
-            comboBoxGrado.SelectedIndex = 0;
-            button1.Text = "consultar";
-            dataGridView1.Visible = false;
+            alumno.select("select DISTINCT  grado || grupo as \"grado y grupo\" from ALUMNO","ALUMNO");
+            alumno.dt = alumno.dataTable();
+            comboBoxGradoGrupo.DataSource = alumno.dt;
+            this.comboBoxGradoGrupo.DisplayMember = "grado y grupo";
+            comboBoxGradoGrupo.SelectedIndexChanged += comboBoxGradoGrupo_SelectedIndexChanged_1;
         }
 
 
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Estadisticas es = new Estadisticas();
-            es.Visible = true;
-            string today = DateTime.Now.ToString("dd/MM/yyyy");
-            today = "06/12/2021";
-            today += " ";
-            string estado = comboBoxEstado.Text;
-            string grado = comboBoxGrado.Text;
-            string grupo = comboBoxGrupo.Text;
-            dataGridView1.Visible = true;
-            try
+           
+        }
+
+        private void llenarDataGridViewAsistentes() 
+        {
+            regEntrada.dt = regEntrada.dataTable();
+            DataTable dt = new DataTable();
+            dt = regEntrada.dt;
+            if (dt != null)
+            {
+                dt.DefaultView.RowFilter = $"grado={comboBoxGradoGrupo.Text[0]} AND grupo='{comboBoxGradoGrupo.Text[2]}'";
+                dataGridView1.DataSource = dt;
+                dataGridView1.Columns[0].Visible = false;
+                dataGridView1.Columns[1].Visible = false;
+                dataGridView1.Columns[2].Visible = false;
+            }
+            else
+                MessageBox.Show("no se encuentran datos del dia de hoy");
+              
+        }
+        private void llenarDataGridViewFaltantes()
+        {
+           
+        }
+
+        private void comboBoxGradoGrupo_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (comboBoxGradoGrupo.Text != "")
             {
                 if (comboBoxEstado.Text == "Asistentes")
-                {
-                    Alumno alumno = new Alumno();
-                    alumno.select("select * from ALUMNO where grado=\"" + grado + "\" and grupo=\"" + grupo + "\"", "ALUMNO");
-                    List<Alumno> listaAlumno = new List<Alumno>();
-                    listaAlumno = alumno.list<Alumno>();
-                  /// implementar//// listaAlumno.Distinct();
-
-                    RegEntradaSalida regentradasalida = new RegEntradaSalida();
-                    regentradasalida.select("select * from Entradas_salidas where fecha =" + "\"" + today + "\"", "Entradas_salidas"); ;
-                    List<RegEntradaSalida> listaEntradas = new List<RegEntradaSalida>();
-                    listaEntradas = regentradasalida.list<RegEntradaSalida>();
-                    List<Alumno> tempES = new List<Alumno>();
-                   if(listaEntradas!=null)
-                    for (int x = 0; x < listaAlumno.Count; x++)
-                    {
-                        for (int y = 0; y < listaEntradas.Count; y++)
-                        {
-                            if (listaEntradas[y].fk_id_alumnos == listaAlumno[x].id_alumnos)
-                            {
-                                tempES.Add(listaAlumno[x]);
-                            }
-                        }
-                    }
-                    dataGridView1.DataSource = tempES;
-                 }
+                    llenarDataGridViewAsistentes();
                 else
-                {
-                    Alumno alumno = new Alumno();
-                    alumno.select("select * from ALUMNO where grado=\"" + grado + "\" and grupo=\"" + grupo + "\"", "ALUMNO");
-                    List<Alumno> listaAlumno = new List<Alumno>();
-                    listaAlumno = alumno.list<Alumno>();
-
-                    RegEntradaSalida regentradasalida = new RegEntradaSalida();
-                    regentradasalida.select("select * from Entradas_salidas where fecha =" + "\"" + today + "\"", "Entradas_salidas"); ;
-                    List<RegEntradaSalida> listaEntradas = new List<RegEntradaSalida>();
-                    listaEntradas = regentradasalida.list<RegEntradaSalida>();
-                    List<Alumno> tempES = new List<Alumno>();
-                    if(listaEntradas!=null)
-                    for (int x = 0; x < listaAlumno.Count; x++)
-                    {
-                        for (int y = 0; y < listaEntradas.Count; y++)
-                        {
-                            if (listaEntradas[y].fk_id_alumnos == listaAlumno[x].id_alumnos)
-                            {
-                                tempES.Add(listaAlumno[x]);
-                            }
-                        }
-                    }
-                    alumno = new Alumno();
-                    alumno.select("select * from ALUMNO where grado=\"" + grado + "\" and grupo=\"" + grupo + "\"", "ALUMNO");
-                    listaAlumno = new List<Alumno>();
-                    listaAlumno = alumno.list<Alumno>();
-
-                    for (int x = 0; x < listaAlumno.Count; x++)
-                    {
-                        int bandera = 0;
-                        for (int y = 0; y < tempES.Count; y++)
-                        {
-                            if (listaAlumno[x].id_alumnos == tempES[y].id_alumnos)
-                            {
-                                bandera = 1;
-                            }
-                        }
-                        if (bandera == 1)
-                        {
-                            listaAlumno.RemoveAt(x);
-                            x--;
-                        }
-                    }
-                    dataGridView1.DataSource = listaAlumno;
-                }
-
-
+                    llenarDataGridViewFaltantes();
             }
-            catch (Exception ex ) { MessageBox.Show(ex.Message.ToString()); }
         }
     }
 }

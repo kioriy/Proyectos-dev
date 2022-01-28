@@ -13,6 +13,7 @@ namespace EntradaSalida
         //public List<Producto> listaIdProducto;
         public int id_entrada_salida { get; set; }
         public string fecha { get; set; }
+        public string nombre_Alumno { get; set; }
         public string hora_entrada { get; set; }
         public string esta_dentro { get; set; }
         public string hora_salida { get; set; }
@@ -126,11 +127,13 @@ namespace EntradaSalida
         public string values()
         {
             return
+            $"\"{nombre_Alumno.ToUpper().Trim()}\"," +
             $"\"{id_entrada_salida}\"," +
             $"\"{fecha.ToUpper().Trim()}\"," +
             $"\"{hora_entrada.ToUpper().Trim()}\"," +
             $"\"{esta_dentro.ToUpper().Trim()}\"," +
             $"\"{hora_salida.ToUpper().Trim()}\"," +
+            
             $"\"{fk_id_alumnos}\"";
 
 
