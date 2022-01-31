@@ -15,6 +15,7 @@ namespace EntradaSalida
     public partial class AsistenciasDelDiaForm : Form
     {
         private RegEntradaSalida regEntrada= new RegEntradaSalida();
+        private Alumno alumno = new Alumno();
         public AsistenciasDelDiaForm()
         {
             InitializeComponent();
@@ -22,8 +23,29 @@ namespace EntradaSalida
             string today = DateTime.Now.ToString("dd/MM/yyyy");
             today = "06/12/2021";
             today += " ";
-            regEntrada.select($"SELECT A.grupo, A.grado, ES.fk_id_alumnos, A.nombre_alumno, ES.Fecha, ES.hora_entrada, ES.hora_salida FROM Entradas_salidas AS ES INNER JOIN ALUMNO AS A ON ES.fk_id_alumnos = A.id_alumnos WHERE Fecha = \"{today}\""
-           , "Entradas_salidas");
+            regEntrada.select("SELECT "+
+                 "ES.Fecha,"+
+                 "ES.hora_entrada AS Entrada," +
+                 "ES.hora_salida AS Salida," +
+                 "A.nombre_alumno AS Nombre," +
+                 "A.grado," +
+                 "A.grupo," +
+                 "A.id_alumnos " +
+                 "FROM ALUMNO AS A " +
+                 "LEFT JOIN" +
+                 "(" +
+                   " SELECT" +
+                      "  ES.fk_id_alumnos, " +
+                        "ES.Fecha," +
+                        "ES.hora_entrada, " +
+                        "ES.hora_salida " +
+                        "FROM Entradas_salidas AS ES " +
+                        "INNER JOIN ALUMNO AS A " +
+                       " ON ES.fk_id_alumnos = A.id_alumnos " +
+                       $" WHERE Fecha = \"{today}\" " +
+                 ") " +
+                "AS ES ON ES.fk_id_alumnos = A.id_alumnos ", "ALUMNO");
+           
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -40,30 +62,10 @@ namespace EntradaSalida
             this.comboBoxGradoGrupo.DisplayMember = "grado y grupo";
             comboBoxGradoGrupo.SelectedIndexChanged += comboBoxGradoGrupo_SelectedIndexChanged_1;
         }
-
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-           
-        }
-
         private void llenarDataGridViewAsistentes() 
         {
             regEntrada.dt = regEntrada.dataTable();
-            DataTable dt = new DataTable();
-            dt = regEntrada.dt;
-            if (dt != null)
-            {
-                dt.DefaultView.RowFilter = $"grado={comboBoxGradoGrupo.Text[0]} AND grupo='{comboBoxGradoGrupo.Text[2]}'";
-                dataGridView1.DataSource = dt;
-                dataGridView1.Columns[0].Visible = false;
-                dataGridView1.Columns[1].Visible = false;
-                dataGridView1.Columns[2].Visible = false;
-            }
-            else
-                MessageBox.Show("no se encuentran datos del dia de hoy");
-              
+            dataGridView1.DataSource = regEntrada.dt;
         }
         private void llenarDataGridViewFaltantes()
         {
