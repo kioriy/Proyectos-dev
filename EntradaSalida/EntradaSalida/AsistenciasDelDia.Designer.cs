@@ -29,45 +29,29 @@ namespace EntradaSalida
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBoxEstado = new System.Windows.Forms.ComboBox();
             this.comboBoxGradoGrupo = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.sqLiteCommand1 = new System.Data.SQLite.SQLiteCommand();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.comboBoxEstado = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkBoxTodosLosTiempos = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // comboBoxEstado
-            // 
-            this.comboBoxEstado.FormattingEnabled = true;
-            this.comboBoxEstado.Location = new System.Drawing.Point(10, 25);
-            this.comboBoxEstado.Name = "comboBoxEstado";
-            this.comboBoxEstado.Size = new System.Drawing.Size(92, 21);
-            this.comboBoxEstado.TabIndex = 1;
             // 
             // comboBoxGradoGrupo
             // 
             this.comboBoxGradoGrupo.FormattingEnabled = true;
-            this.comboBoxGradoGrupo.Location = new System.Drawing.Point(130, 25);
+            this.comboBoxGradoGrupo.Location = new System.Drawing.Point(10, 27);
             this.comboBoxGradoGrupo.Name = "comboBoxGradoGrupo";
             this.comboBoxGradoGrupo.Size = new System.Drawing.Size(92, 21);
             this.comboBoxGradoGrupo.TabIndex = 2;
             this.comboBoxGradoGrupo.SelectedIndexChanged += new System.EventHandler(this.comboBoxGradoGrupo_SelectedIndexChanged_1);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Estado.";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(130, 6);
+            this.label2.Location = new System.Drawing.Point(12, 11);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 13);
             this.label2.TabIndex = 4;
@@ -85,16 +69,46 @@ namespace EntradaSalida
             this.dataGridView1.Size = new System.Drawing.Size(435, 215);
             this.dataGridView1.TabIndex = 6;
             // 
+            // comboBoxEstado
+            // 
+            this.comboBoxEstado.FormattingEnabled = true;
+            this.comboBoxEstado.Location = new System.Drawing.Point(123, 27);
+            this.comboBoxEstado.Name = "comboBoxEstado";
+            this.comboBoxEstado.Size = new System.Drawing.Size(92, 21);
+            this.comboBoxEstado.TabIndex = 7;
+            this.comboBoxEstado.SelectedIndexChanged += new System.EventHandler(this.comboBoxEstado_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(120, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Estado";
+            // 
+            // checkBoxTodosLosTiempos
+            // 
+            this.checkBoxTodosLosTiempos.AutoSize = true;
+            this.checkBoxTodosLosTiempos.Location = new System.Drawing.Point(232, 29);
+            this.checkBoxTodosLosTiempos.Name = "checkBoxTodosLosTiempos";
+            this.checkBoxTodosLosTiempos.Size = new System.Drawing.Size(107, 17);
+            this.checkBoxTodosLosTiempos.TabIndex = 9;
+            this.checkBoxTodosLosTiempos.Text = "Todas las fechas";
+            this.checkBoxTodosLosTiempos.UseVisualStyleBackColor = true;
+            this.checkBoxTodosLosTiempos.CheckedChanged += new System.EventHandler(this.checkBoxTodosLosTiempos_CheckedChanged);
+            // 
             // AsistenciasDelDiaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 281);
+            this.Controls.Add(this.checkBoxTodosLosTiempos);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboBoxEstado);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxGradoGrupo);
-            this.Controls.Add(this.comboBoxEstado);
             this.Name = "AsistenciasDelDiaForm";
             this.Text = "Asistencias del dia.";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -105,12 +119,13 @@ namespace EntradaSalida
         }
 
         #endregion
-        private System.Windows.Forms.ComboBox comboBoxEstado;
         private System.Windows.Forms.ComboBox comboBoxGradoGrupo;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Data.SQLite.SQLiteCommand sqLiteCommand1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox comboBoxEstado;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox checkBoxTodosLosTiempos;
     }
 }
 
