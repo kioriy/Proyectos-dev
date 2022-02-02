@@ -43,9 +43,9 @@ namespace EntradaSalida
             execute(table, values(), "update", where);
         }
 
-        public void query(string valuesString, string where)
+        public void query(string where)
         {
-            execute(table, $"{valuesString}", "query", where);
+            execute(table, values(), "query", where);
         }
 
         public void free(string query)
@@ -133,7 +133,6 @@ namespace EntradaSalida
             $"\"{hora_entrada.ToUpper().Trim()}\"," +
             $"\"{esta_dentro.ToUpper().Trim()}\"," +
             $"\"{hora_salida.ToUpper().Trim()}\"," +
-            
             $"\"{fk_id_alumnos}\"";
 
 

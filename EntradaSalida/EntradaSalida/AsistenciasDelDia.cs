@@ -74,6 +74,7 @@ namespace EntradaSalida
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            
             comboBox1.Visible = false;
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxEstado.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -89,6 +90,9 @@ namespace EntradaSalida
             this.comboBoxGradoGrupo.DisplayMember = "grado y grupo";
             comboBoxGradoGrupo.SelectedIndexChanged += comboBoxGradoGrupo_SelectedIndexChanged_1;
             comboBoxEstado.SelectedIndexChanged += comboBoxEstado_SelectedIndexChanged;
+            Estadisticas es = new Estadisticas(alumno.dt);
+            es.Visible = true;
+            this.Visible = false;
         }
         private void llenarDataGridView()
         {
@@ -106,7 +110,6 @@ namespace EntradaSalida
                 dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 dataGridView1.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-               //dataGridView1.Columns[3].Visible = false;
                 dataGridView1.Columns[4].Visible = false;
                 dataGridView1.Columns[5].Visible = false;
                 dataGridView1.Columns[6].Visible = false;
@@ -125,7 +128,6 @@ namespace EntradaSalida
                 dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 dataGridView1.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                //dataGridView1.Columns[3].Visible = false;
                 dataGridView1.Columns[4].Visible = false;
                 dataGridView1.Columns[5].Visible = false;
                 dataGridView1.Columns[6].Visible = false;
@@ -142,7 +144,6 @@ namespace EntradaSalida
                 dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 dataGridView1.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                //dataGridView1.Columns[3].Visible = false;
                 dataGridView1.Columns[4].Visible = false;
                 dataGridView1.Columns[5].Visible = false;
                 dataGridView1.Columns[6].Visible = false;
@@ -161,7 +162,6 @@ namespace EntradaSalida
                 dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 dataGridView1.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                //dataGridView1.Columns[3].Visible = false;
                 dataGridView1.Columns[4].Visible = false;
                 dataGridView1.Columns[5].Visible = false;
                 dataGridView1.Columns[6].Visible = false;

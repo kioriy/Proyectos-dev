@@ -38,6 +38,8 @@ namespace EntradaSalida
             this.labelGoodAsistencia = new System.Windows.Forms.Label();
             this.labelBadAsistencia = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -126,11 +128,20 @@ namespace EntradaSalida
             this.panel1.Size = new System.Drawing.Size(95, 289);
             this.panel1.TabIndex = 8;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 26);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(352, 243);
+            this.dataGridView1.TabIndex = 9;
+            // 
             // Estadisticas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 281);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelBadAsistencia);
             this.Controls.Add(this.labelGoodAsistencia);
@@ -143,6 +154,7 @@ namespace EntradaSalida
             this.Name = "Estadisticas";
             this.Text = "Estadisticas";
             this.Load += new System.EventHandler(this.Estadisticas_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -159,5 +171,6 @@ namespace EntradaSalida
         private System.Windows.Forms.Label labelGoodAsistencia;
         private System.Windows.Forms.Label labelBadAsistencia;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

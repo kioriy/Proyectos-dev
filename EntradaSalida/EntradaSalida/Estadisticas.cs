@@ -13,27 +13,22 @@ namespace EntradaSalida
 {
     public partial class Estadisticas : Form
     {
-        public Estadisticas()
+        public Estadisticas(DataTable dt)
         {
             InitializeComponent();
         }
 
         private void Estadisticas_Load(object sender, EventArgs e)
         {
-          /* Alumno alumno = new Alumno();
-            alumno.select("select * from ALUMNO", "ALUMNO");
-            List<Alumno> listaAlumnos = new List<Alumno>();
-            listaAlumnos = alumno.list<Alumno>();
-            RegEntradaSalida entradasalida = new RegEntradaSalida();
-            entradasalida.select("select * from Entradas_salidas", "Entradas_salidas");
-            List<RegEntradaSalida> listaEntradasSalidas = new List<RegEntradaSalida>();
-            listaEntradasSalidas = entradasalida.list<RegEntradaSalida>();
-            List<RegEntradaSalida> busqueda = new List<RegEntradaSalida>();
-            busqueda = listaEntradasSalidas.FindAll(item =>item.fk_id_alumnos == 1);*/
+            RegEntradaSalida reg = new RegEntradaSalida();
+            reg.select("Select grado, grupo, fk_id_alumnos, id_alumnos, Fecha from ALUMNO AS A INNER JOIN Entradas_salidas AS ES ON ES.fk_id_alumnos = A.id_alumnos","ALUMNO");
+            reg.dt = reg.dataTable();
+            reg.dt.DefaultView.RowFilter = "grado= '1' and grupo='A'"; 
+            dataGridView1.DataSource = reg.dt;
+            MessageBox.Show(dataGridView1.Rows.Count.ToString());
 
-            
             ////calcular porcentaje de entradas del dia 
-             string today = DateTime.Now.Date.ToShortDateString();
+            string today = DateTime.Now.Date.ToShortDateString();
             today = "06/12/2021";//quitar
             double entradasDeHoy=0,totalDeAlumnos=0;
             Alumno alumno = new Alumno();
@@ -68,6 +63,8 @@ namespace EntradaSalida
             totalDeRegistros = listaEntradasSalidas.Count;
             Multiporcentaje = Multiporcentaje * totalDeRegistros;
             labelAsistenciaYear.Text = (Math.Round(Multiporcentaje, 2)).ToString() + " %";
+            
+            ///////
             
 
 

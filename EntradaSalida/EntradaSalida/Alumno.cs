@@ -16,14 +16,14 @@ namespace EntradaSalida
         public string direccion { get; set; }
         public string grado { get; set; }
         public string grupo { get; set; }
-        public string curp { get; set; }
+        public string CURP { get; set; }
         public string telefono { get; set; }
         public string apellido_alumno{ get; set; }
         public string tutor { get; set; }
-        public string telefono2 { get; set; }
+        public string telefono_2 { get; set; }
         public string tipo_sangre { get; set; }
         public string nivel_estudios { get; set; }
-     /*   public int numero_lista { get; set; }*/
+        public int numero_lista { get; set; }
         public string domicilio { get; set; }
         //private string respuesta = "";
 
@@ -52,9 +52,9 @@ namespace EntradaSalida
             execute(table, values(), "update", where);
         }
 
-        public void query(string valuesString, string where)
+        public void query(string where)
         {
-            execute(table, $"{valuesString}","query", where);
+            execute(table, valuesString(), "query", where);
         }
 
         public void free(string query)
@@ -143,14 +143,30 @@ namespace EntradaSalida
             $"\"{grupo.ToUpper().Trim()}\"," +
             $"\"{tutor.ToUpper().Trim()}\"," +
             $"\"{telefono.ToUpper().Trim()}\"," +
-            $"\"{telefono2.ToUpper().Trim()}\"," +
+            $"\"{telefono_2.ToUpper().Trim()}\"," +
             $"\"{tipo_sangre.ToUpper().Trim()}\"," +
             $"\"{nivel_estudios.ToUpper().Trim()}\"," +
-          /*  $"\"{numero_lista}\"," +*/
+            $"\"{numero_lista}\"," +
             $"\"{domicilio.ToUpper().Trim()}\"," +
-            $"\"{curp.ToUpper().Trim()}\"";
+            $"\"{CURP.ToUpper().Trim()}\"";
             
-            
+        }
+        public string valuesString()
+        {
+            return
+            "id_alumnos, " +
+            "nombre_alumno, " +
+            "apellido_alumno, " +
+            "grado, " +
+            "grupo, " +
+            "tutor, " +
+            "telefono, "+
+            "telefono_2. " +
+            "tipo_sangre, " +
+            "nivel_estudios, " +
+                "numero_lista, " +
+            "domicilio, " +
+            "CURP";
         }
         #endregion
     }
