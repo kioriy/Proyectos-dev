@@ -27,14 +27,13 @@ namespace EntradaSalida
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             today = DateTime.Now.ToString("dd/MM/yyyy");
             today = "06/12/2021";
-            today += " ";
             regEntrada.select("SELECT " +
                 "A.nombre_alumno AS Nombre," +
                  "ES.hora_entrada AS Entrada," +
                  "ES.hora_salida AS Salida," +
                  "ES.Fecha," +
-                 "A.grado," +
-                 "A.grupo," +
+                 "grado," +
+                 "grupo," +
                  "A.id_alumnos " +
                  "FROM ALUMNO AS A " +
                  "LEFT JOIN" +
@@ -49,14 +48,17 @@ namespace EntradaSalida
                        " ON ES.fk_id_alumnos = A.id_alumnos " +
                        $" WHERE Fecha = \"{today}\" " +
                  ") " +
-                "AS ES ON ES.fk_id_alumnos = A.id_alumnos ", "ALUMNO");
+                "AS ES ON ES.fk_id_alumnos = A.id_alumnos "+
+                "INNER JOIN AULAS on "+
+                "id_aula = A.fk_id_aula "
+                , "ALUMNO");
             regEntradaAll.select("SELECT " +
                 "A.nombre_alumno AS Nombre," +
                  "ES.hora_entrada AS Entrada," +
                  "ES.hora_salida AS Salida," +
                  "ES.Fecha," +
-                 "A.grado," +
-                 "A.grupo," +
+                 "grado," +
+                 "grupo," +
                  "A.id_alumnos " +
                  "FROM ALUMNO AS A " +
                  "LEFT JOIN" +
@@ -70,7 +72,10 @@ namespace EntradaSalida
                         "INNER JOIN ALUMNO AS A " +
                        " ON ES.fk_id_alumnos = A.id_alumnos " +
                  ") " +
-                "AS ES ON ES.fk_id_alumnos = A.id_alumnos ", "ALUMNO");
+                "AS ES ON ES.fk_id_alumnos = A.id_alumnos "+
+                 "INNER JOIN AULAS on " +
+                "id_aula = A.fk_id_aula "
+                , "ALUMNO");
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -84,15 +89,17 @@ namespace EntradaSalida
             comboBoxEstado.SelectedIndex = 0;
             comboBoxGradoGrupo.DropDownStyle = ComboBoxStyle.DropDownList;
             Alumno alumno = new Alumno();
-            alumno.select("select DISTINCT  grado || grupo as \"grado y grupo\" from ALUMNO","ALUMNO");
+            alumno.select("select DISTINCT  grado || grupo as \"grado y grupo\" from AULAS","AULAS");
             alumno.dt = alumno.dataTable();
             comboBoxGradoGrupo.DataSource = alumno.dt;
             this.comboBoxGradoGrupo.DisplayMember = "grado y grupo";
             comboBoxGradoGrupo.SelectedIndexChanged += comboBoxGradoGrupo_SelectedIndexChanged_1;
             comboBoxEstado.SelectedIndexChanged += comboBoxEstado_SelectedIndexChanged;
-            Estadisticas es = new Estadisticas(alumno.dt);
+           Estadisticas es = new Estadisticas(alumno.dt);
             es.Visible = true;
-            this.Visible = false;
+            this.WindowState = FormWindowState.Minimized;
+           this.Enabled = false;
+           
         }
         private void llenarDataGridView()
         {
@@ -102,7 +109,7 @@ namespace EntradaSalida
                 regEntrada.dt = regEntrada.dataTable();
                 regEntrada.dt.DefaultView.RowFilter = $"fecha ='{today}' " +
                 $"and grado='{comboBoxGradoGrupo.Text[0]}' " +
-                $"and grupo='{comboBoxGradoGrupo.Text[2]}'";
+                $"and grupo='{comboBoxGradoGrupo.Text[1]}'";
                 dataGridView1.DataSource = regEntrada.dt;
                 comboBox1.SelectedIndexChanged -= comboBoxAlumnos_SelectedIndexChanged;
                 comboBox1.DataSource = regEntrada.dt;
@@ -120,7 +127,7 @@ namespace EntradaSalida
                 regEntrada.dt = regEntrada.dataTable();
                 regEntrada.dt.DefaultView.RowFilter = $"fecha IS NULL " +
                 $"and grado='{comboBoxGradoGrupo.Text[0]}' " +
-                $"and grupo='{comboBoxGradoGrupo.Text[2]}'";
+                $"and grupo='{comboBoxGradoGrupo.Text[1]}'";
                 dataGridView1.DataSource = regEntrada.dt;
                 comboBox1.SelectedIndexChanged -= comboBoxAlumnos_SelectedIndexChanged;
                 comboBox1.DataSource = regEntrada.dt;
@@ -136,7 +143,7 @@ namespace EntradaSalida
             {
                 regEntrada.dt = regEntrada.dataTable();
                 regEntrada.dt.DefaultView.RowFilter =$"grado='{comboBoxGradoGrupo.Text[0]}' " +
-                $"and grupo='{comboBoxGradoGrupo.Text[2]}'";
+                $"and grupo='{comboBoxGradoGrupo.Text[1]}'";
                 dataGridView1.DataSource = regEntrada.dt;
                 comboBox1.SelectedIndexChanged -= comboBoxAlumnos_SelectedIndexChanged;
                 comboBox1.DataSource = regEntrada.dt;
@@ -153,7 +160,7 @@ namespace EntradaSalida
                     comboBoxEstado.SelectedIndex = 0;
                     regEntradaAll.dt = regEntradaAll.dataTable();
                     regEntradaAll.dt.DefaultView.RowFilter = $"grado='{comboBoxGradoGrupo.Text[0]}' " +
-                    $"and grupo='{comboBoxGradoGrupo.Text[2]}' " +
+                    $"and grupo='{comboBoxGradoGrupo.Text[1]}' " +
                     "and fecha IS NOT NULL";
                     dataGridView1.DataSource = regEntradaAll.dt;
                 comboBox1.SelectedIndexChanged -= comboBoxAlumnos_SelectedIndexChanged;
