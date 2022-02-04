@@ -21,7 +21,7 @@ namespace EntradaSalida
         {
             try
             {
-                string cuerpo = "Este mensaje es para comunicarle que su correo a a sido utilizado para registrarse en un programa de un sistema bancario. cualquier aclaracion contactar al correo mario.horo@hotmail.com";
+                string cuerpo = "Este mensaje es para comunicarle que su correo a a sido utilizado para registrarse en sistema bancario. cualquier aclaracion contactar al correo mario.horo@hotmail.com";
                 System.Net.Mail.MailMessage mns = new System.Net.Mail.MailMessage();
                 mns.To.Add("alberto.alfaro@alumnos.udg.mx");
                 mns.Subject = "Banco chafander";
@@ -63,7 +63,6 @@ namespace EntradaSalida
         public Estadisticas(DataTable dat)
         {
             InitializeComponent();
-            enviarCorreo();
             dataGridView1.Visible = false;
             dt = dat;
             // 5, 10
@@ -88,7 +87,6 @@ namespace EntradaSalida
 
         private void Estadisticas_Load(object sender, EventArgs e)
         {
-            
             string today = DateTime.Now.Date.ToShortDateString();
             today = "06/12/2021";//quitar
             calcularEntradasDelDia(today);
@@ -207,6 +205,11 @@ namespace EntradaSalida
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

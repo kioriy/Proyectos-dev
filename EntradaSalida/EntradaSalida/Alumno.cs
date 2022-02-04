@@ -22,6 +22,7 @@ namespace EntradaSalida
         public string tutor { get; set; }
         public string telefono_2 { get; set; }
         public string tipo_sangre { get; set; }
+        public string fecha { get; set; }
         public string nivel_estudios { get; set; }
         public int numero_lista { get; set; }
         public string domicilio { get; set; }
@@ -145,7 +146,8 @@ namespace EntradaSalida
             $"\"{telefono.ToUpper().Trim()}\"," +
             $"\"{telefono_2.ToUpper().Trim()}\"," +
             $"\"{tipo_sangre.ToUpper().Trim()}\"," +
-            $"\"{nivel_estudios.ToUpper().Trim()}\"," +
+            $"\"{nivel_estudios.ToUpper().Trim()}\","+
+            $"\"{fecha.ToUpper().Trim()}\"," +
             $"\"{numero_lista}\"," +
             $"\"{domicilio.ToUpper().Trim()}\"," +
             $"\"{CURP.ToUpper().Trim()}\"";

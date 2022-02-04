@@ -40,17 +40,16 @@ namespace EntradaSalida
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 10);
+            this.label1.Location = new System.Drawing.Point(41, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 13);
             this.label1.TabIndex = 0;
@@ -59,7 +58,7 @@ namespace EntradaSalida
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 70);
+            this.label2.Location = new System.Drawing.Point(41, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 13);
             this.label2.TabIndex = 1;
@@ -68,7 +67,7 @@ namespace EntradaSalida
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 130);
+            this.label3.Location = new System.Drawing.Point(41, 135);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(139, 13);
             this.label3.TabIndex = 2;
@@ -77,7 +76,7 @@ namespace EntradaSalida
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 190);
+            this.label4.Location = new System.Drawing.Point(41, 195);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(132, 13);
             this.label4.TabIndex = 3;
@@ -87,7 +86,7 @@ namespace EntradaSalida
             // 
             this.labelAsistenciaToday.AutoSize = true;
             this.labelAsistenciaToday.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAsistenciaToday.Location = new System.Drawing.Point(10, 30);
+            this.labelAsistenciaToday.Location = new System.Drawing.Point(41, 35);
             this.labelAsistenciaToday.Name = "labelAsistenciaToday";
             this.labelAsistenciaToday.Size = new System.Drawing.Size(53, 31);
             this.labelAsistenciaToday.TabIndex = 4;
@@ -98,7 +97,7 @@ namespace EntradaSalida
             // 
             this.labelAsistenciaYear.AutoSize = true;
             this.labelAsistenciaYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAsistenciaYear.Location = new System.Drawing.Point(10, 90);
+            this.labelAsistenciaYear.Location = new System.Drawing.Point(41, 95);
             this.labelAsistenciaYear.Name = "labelAsistenciaYear";
             this.labelAsistenciaYear.Size = new System.Drawing.Size(53, 31);
             this.labelAsistenciaYear.TabIndex = 5;
@@ -108,7 +107,7 @@ namespace EntradaSalida
             // 
             this.labelGoodAsistencia.AutoSize = true;
             this.labelGoodAsistencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelGoodAsistencia.Location = new System.Drawing.Point(10, 150);
+            this.labelGoodAsistencia.Location = new System.Drawing.Point(41, 155);
             this.labelGoodAsistencia.Name = "labelGoodAsistencia";
             this.labelGoodAsistencia.Size = new System.Drawing.Size(23, 31);
             this.labelGoodAsistencia.TabIndex = 6;
@@ -118,7 +117,7 @@ namespace EntradaSalida
             // 
             this.labelBadAsistencia.AutoSize = true;
             this.labelBadAsistencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBadAsistencia.Location = new System.Drawing.Point(10, 210);
+            this.labelBadAsistencia.Location = new System.Drawing.Point(41, 215);
             this.labelBadAsistencia.Name = "labelBadAsistencia";
             this.labelBadAsistencia.Size = new System.Drawing.Size(23, 31);
             this.labelBadAsistencia.TabIndex = 7;
@@ -129,10 +128,12 @@ namespace EntradaSalida
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Location = new System.Drawing.Point(185, -3);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(221, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(280, 289);
+            this.panel1.Size = new System.Drawing.Size(243, 281);
             this.panel1.TabIndex = 8;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // label5
             // 
@@ -147,54 +148,46 @@ namespace EntradaSalida
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(1, 259);
+            this.dataGridView1.Location = new System.Drawing.Point(84, 226);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(10, 10);
+            this.dataGridView1.Size = new System.Drawing.Size(40, 27);
             this.dataGridView1.TabIndex = 9;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // textBox1
+            // panel2
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(79, 249);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(59, 101);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 10;
+            this.panel2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panel2.Controls.Add(this.dataGridView1);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.labelAsistenciaYear);
+            this.panel2.Controls.Add(this.labelAsistenciaToday);
+            this.panel2.Controls.Add(this.labelBadAsistencia);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.labelGoodAsistencia);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(216, 281);
+            this.panel2.TabIndex = 9;
             // 
             // Estadisticas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 281);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.labelBadAsistencia);
-            this.Controls.Add(this.labelGoodAsistencia);
-            this.Controls.Add(this.labelAsistenciaYear);
-            this.Controls.Add(this.labelAsistenciaToday);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Name = "Estadisticas";
             this.Text = "Estadisticas";
             this.Load += new System.EventHandler(this.Estadisticas_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -211,7 +204,6 @@ namespace EntradaSalida
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

@@ -17,14 +17,18 @@ namespace EntradaSalida
         private RegEntradaSalida regEntradaAll = new RegEntradaSalida();
         private Alumno alumno = new Alumno();
         private string today;
+        private decimal numeroDeFechasTotales= 0.0M;
         public AsistenciasDelDiaForm()
         {
            
             InitializeComponent();
+            regEntrada.select("SELECT count(DISTINCT Fecha) as allfechas from Entradas_salidas", "Entradas_salidas");
+            numeroDeFechasTotales = int.Parse((regEntrada.dt = regEntrada.dataTable()).Rows[0][0].ToString());
             dataGridView1.BackgroundColor = Color.White;
             comboBoxGradoGrupo.SelectedIndexChanged -= comboBoxGradoGrupo_SelectedIndexChanged_1;
             comboBoxEstado.SelectedIndexChanged -= comboBoxEstado_SelectedIndexChanged;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.AutoSizeColumnsMode = (DataGridViewAutoSizeColumnsMode)DataGridViewAutoSizeColumnMode.Fill;
             today = DateTime.Now.ToString("dd/MM/yyyy");
             today = "06/12/2021";
             regEntrada.select("SELECT " +
@@ -79,7 +83,6 @@ namespace EntradaSalida
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            
             comboBox1.Visible = false;
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxEstado.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -95,10 +98,10 @@ namespace EntradaSalida
             this.comboBoxGradoGrupo.DisplayMember = "grado y grupo";
             comboBoxGradoGrupo.SelectedIndexChanged += comboBoxGradoGrupo_SelectedIndexChanged_1;
             comboBoxEstado.SelectedIndexChanged += comboBoxEstado_SelectedIndexChanged;
-           Estadisticas es = new Estadisticas(alumno.dt);
+            /*Estadisticas es = new Estadisticas(alumno.dt);
             es.Visible = true;
             this.WindowState = FormWindowState.Minimized;
-           this.Enabled = false;
+           this.Enabled = false; */
            
         }
         private void llenarDataGridView()
@@ -120,8 +123,34 @@ namespace EntradaSalida
                 dataGridView1.Columns[4].Visible = false;
                 dataGridView1.Columns[5].Visible = false;
                 dataGridView1.Columns[6].Visible = false;
+                Alumno al = new Alumno();
+                al.select("select "+
+                       "A.id_alumnos, " +
+                       "A.nombre_alumno, " +
+                       "ES.Fecha " +
+                "from ALUMNO as A " +
+                "inner join Entradas_salidas as ES " +
+                "on A.id_alumnos = ES.fk_id_alumnos","ALUMNO");
+                List<Alumno> listAl = new List<Alumno>();
+                listAl = al.list<Alumno>();
+                comboBox2.SelectedIndexChanged -= comboBoxAlumnos_SelectedIndexChanged;
+                comboBox2.DataSource = regEntrada.dt;
+                this.comboBox2.DisplayMember = "id_alumnos";
+                List<decimal> porcentajes= new List<decimal>();
+              
+                for (int x = 0; x < comboBox2.Items.Count; x++) {
+                    List<Alumno> listAl2 = new List<Alumno>();
+                    comboBox2.SelectedIndex= x;
+                    int RES=int.Parse(comboBox2.Text);
+                    listAl2 = listAl.FindAll(y=>y.id_alumnos==RES);
+                    decimal temp = (100/numeroDeFechasTotales);
+                    temp = temp * listAl2.Count;
+                    porcentajes.Add(temp);
+                    MessageBox.Show(porcentajes[x].ToString());
+                }
+                comboBox2.SelectedIndex = 0;
 
-            }
+            }   
             if (comboBoxEstado.SelectedIndex == 1 && !checkBoxTodosLosTiempos.Checked)
             {
                 regEntrada.dt = regEntrada.dataTable();
@@ -200,6 +229,11 @@ namespace EntradaSalida
             "AND fecha IS NOT NULL";
             dataGridView1.DataSource = regEntradaAll.dt;
             
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
