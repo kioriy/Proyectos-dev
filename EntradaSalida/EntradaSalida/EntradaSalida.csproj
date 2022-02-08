@@ -64,6 +64,12 @@
     <Compile Include="Estadisticas.Designer.cs">
       <DependentUpon>Estadisticas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Grafica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Grafica.Designer.cs">
+      <DependentUpon>Grafica.cs</DependentUpon>
+    </Compile>
     <Compile Include="List.cs" />
     <Compile Include="Mensaje.cs" />
     <Compile Include="Program.cs" />
@@ -74,6 +80,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Estadisticas.resx">
       <DependentUpon>Estadisticas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Grafica.resx">
+      <DependentUpon>Grafica.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

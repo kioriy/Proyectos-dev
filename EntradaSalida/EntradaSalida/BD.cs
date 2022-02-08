@@ -38,8 +38,9 @@ namespace EntradaSalida
             {
                 //System.Windows.Forms.MessageBox.Show("entre a la version test");
                 // parametrosConexion = "URI = file:dbmiPV.db; Version = 3; New = False; Compress = True;";
-                parametrosConexion = "URI = file:C://Users/kvffa/Documents/mario/proyectos/EntradasSalidas/baseCETI.db; Version = 3; New = false; Compress = True;";
+                parametrosConexion = "URI = file:C://Users/alber/Documents/proyectos/EntradasSalidas/baseCETI.db; Version = 3; New = false; Compress = True;";
             }
+   
             else if ((int)Environment.OSVersion.Platform == 4)
             {
                 //try

@@ -102,7 +102,10 @@ namespace EntradaSalida
             es.Visible = true;
             this.WindowState = FormWindowState.Minimized;
            this.Enabled = false; */
-           
+            Grafica g = new Grafica(numeroDeFechasTotales);
+            g.Visible = true; 
+            this.WindowState = FormWindowState.Minimized;
+            this.Enabled = false;
         }
         private void llenarDataGridView()
         {
