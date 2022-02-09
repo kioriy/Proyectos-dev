@@ -88,9 +88,8 @@ namespace EntradaSalida
             Series series;
             for (int x = 0; x < grados.Rows.Count; x++)
             {
-                series = chart1.Series.Add(grados.Rows[x][0].ToString());
-                series.Points.Add( double.Parse(allProcentajes[x].ToString()));
-                
+                series = chart1.Series.Add(grados.Rows[x][0].ToString()+": "+allProcentajes[x].ToString());
+                series.Points.AddXY("Aulas",double.Parse(allProcentajes[x].ToString()));
             }
         }
 
