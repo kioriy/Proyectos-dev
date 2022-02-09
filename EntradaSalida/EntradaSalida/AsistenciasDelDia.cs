@@ -91,11 +91,11 @@ namespace EntradaSalida
             /*Estadisticas es = new Estadisticas(alumno.dt);
             es.Visible = true;
             this.WindowState = FormWindowState.Minimized;
-           this.Enabled = false; 
+           this.Enabled = false; */
             Grafica g = new Grafica(numeroDeFechasTotales);
             g.Visible = true; 
             this.WindowState = FormWindowState.Minimized;
-            this.Enabled = false;*/
+            this.Enabled = false;
         }
       
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

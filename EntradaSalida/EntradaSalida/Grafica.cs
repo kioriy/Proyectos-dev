@@ -21,8 +21,8 @@ namespace EntradaSalida
         public Grafica(decimal fechasN)
         {
             InitializeComponent();
-            dataGridView1.Visible = false;
-            dataGridView1.Enabled = false;
+           /* dataGridView1.Visible = false;
+            dataGridView1.Enabled = false;*/
             fechasTotales = fechasN;
             alumno.select("select DISTINCT  grado || grupo as \"grado y grupo\" from AULAS", "AULAS");
             grados = alumno.dataTable();
@@ -41,6 +41,8 @@ namespace EntradaSalida
         private void Grafica_Load(object sender, EventArgs e)
         {
             PorcentajeAllAlumnos();
+             CrearStatus();
+            calcularNumeroDeFaltas();
         }
         private void PorcentajeAllAlumnos()
         {
@@ -93,6 +95,55 @@ namespace EntradaSalida
             }
         }
 
-       
+        private void CrearStatus()
+        {
+            List<string> listStatus = new List<string>();
+            Dictionary<decimal, int> dic = new Dictionary<decimal, int>();
+            dic.Add(100,0);
+            dic.Add(90, 0);
+            dic.Add(80, 1);
+            dic.Add(70, 2);
+            dic.Add(60, 3);
+            for (int x = 0; x < grados.Rows.Count; x++) {
+                decimal res;
+                res = decimal.Round((allProcentajes[x] / 10), 0) * 10;
+                res = allProcentajes[x] < 60 ? 60 : res;
+                res = dic[res];
+                switch (res) {
+                    case 0:
+                        listStatus.Add("excelente");
+                        break;
+                    case 1:
+                        listStatus.Add("regular");
+                        break;
+                    case 2:
+                        listStatus.Add("irregular");
+                        break;
+                    case 3:
+                        listStatus.Add("pesimo");
+                        break;
+                }
+            }
+        }
+
+        private void calcularNumeroDeFaltas() {
+            Alumno al = new Alumno();
+            al.select("SELECT "+
+                      "(grado || ' ' || grupo) as \"grado y grupo\", count(\"grado y grupo\") as retardo " +
+                      "FROM ALUMNO " +
+                      "INNER JOIN " +
+                      "Entradas_salidas ON " +
+                      "id_alumnos = fk_id_alumnos " +
+                      "INNER JOIN " +
+                      "AULAS on " +
+                      "id_aula = fk_id_aula " +
+                      "WHERE hora_entrada > \"08:11\" and hora_entrada <= \"23:15\" " +
+                      "GROUP BY \"grado y grupo\"","ALUMNO");
+            al.dt = al.dataTable();
+            dataGridView1.DataSource = alumno.dt;
+            
+        }
+
+        
     }
 }
