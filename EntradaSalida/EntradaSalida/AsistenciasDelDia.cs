@@ -26,6 +26,12 @@ namespace EntradaSalida
             numeroDeFechasTotales = int.Parse((regEntrada.dt = regEntrada.dataTable()).Rows[0][0].ToString());
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Gray;
+            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.Gray;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.White;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dataGridView1.RowHeadersDefaultCellStyle.SelectionBackColor = Color.White;
+            dataGridView1.EnableHeadersVisualStyles = false;
             today = DateTime.Now.ToString("dd/MM/yyyy");
             today = "06/12/2021";
             regEntrada.select("SELECT " +
@@ -92,7 +98,7 @@ namespace EntradaSalida
             es.Visible = true;
             this.WindowState = FormWindowState.Minimized;
            this.Enabled = false; */
-            Grafica g = new Grafica(numeroDeFechasTotales);
+           Grafica g = new Grafica(numeroDeFechasTotales);
             g.Visible = true; 
             this.WindowState = FormWindowState.Minimized;
             this.Enabled = false;
@@ -141,6 +147,7 @@ namespace EntradaSalida
             dataGridView1.Columns[4].Visible = false;
             dataGridView1.Columns[5].Visible = false;
             dataGridView1.Columns[6].Visible = false;
+          
         }
         private void mostrarFaltantes() 
         {
