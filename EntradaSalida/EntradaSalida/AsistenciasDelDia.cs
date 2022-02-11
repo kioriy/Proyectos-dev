@@ -33,7 +33,8 @@ namespace EntradaSalida
             dataGridView1.RowHeadersDefaultCellStyle.SelectionBackColor = Color.White;
             dataGridView1.EnableHeadersVisualStyles = false;
             today = DateTime.Now.ToString("dd/MM/yyyy");
-            today = "06/12/2021";
+            today += " ";
+            today = "27/01/2022 ";/////////////////////////////////////////////////borrar
             regEntrada.select("SELECT " +
                 "A.nombre_alumno AS Nombre," +
                  "ES.hora_entrada AS Entrada," +
@@ -94,16 +95,15 @@ namespace EntradaSalida
             alumno.dt = alumno.dataTable();
             comboBoxGradoGrupo.DataSource = alumno.dt;
             this.comboBoxGradoGrupo.DisplayMember = "grado y grupo";
-            /*Estadisticas es = new Estadisticas(alumno.dt);
+           /* Estadisticas es = new Estadisticas(alumno.dt);
             es.Visible = true;
             this.WindowState = FormWindowState.Minimized;
-           this.Enabled = false; */
+           this.Enabled = false; 
            Grafica g = new Grafica(numeroDeFechasTotales);
             g.Visible = true; 
-            this.WindowState = FormWindowState.Minimized;
-            this.Enabled = false;
+           this.WindowState = FormWindowState.Minimized;
+            this.Enabled = false;*/
         }
-      
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             comboBox1.SelectedItem = dataGridView1.SelectedRows.ToString();          
@@ -147,7 +147,6 @@ namespace EntradaSalida
             dataGridView1.Columns[4].Visible = false;
             dataGridView1.Columns[5].Visible = false;
             dataGridView1.Columns[6].Visible = false;
-          
         }
         private void mostrarFaltantes() 
         {

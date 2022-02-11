@@ -39,7 +39,6 @@ namespace EntradaSalida
         }
         private void Grafica_Load(object sender, EventArgs e)
         {
-            
             mostrarDatos(PorcentajeAllAlumnos(),calcularNumeroDeRetardos(), CrearStatus());
         }
 #region metodos 
@@ -62,7 +61,6 @@ namespace EntradaSalida
                       "ON ES.fk_id_alumnos = A.id_alumnos " +
                       "INNER JOIN AULAS AS AU " +
                       "on a.fk_id_aula = AU.id_aula ", "ALUMNO");
-
             int NumFechas = 0;
             int NumAlumnos;
             decimal res = 0;
@@ -83,6 +81,7 @@ namespace EntradaSalida
                 if(res>0)
                 res = (100 / res);
                 res = res * NumFechas;
+                res = res * 2;/////////////////////////////////////////////////////////borrar pandemico
                 allProcentajes.Add( decimal.Round(res, 2));
             }
             chart1.Series.Clear();
@@ -187,6 +186,6 @@ namespace EntradaSalida
             dataGridView1.RowHeadersDefaultCellStyle.SelectionBackColor = Color.White;
             dataGridView1.EnableHeadersVisualStyles = false;
         }
-# endregion
+        #endregion
     }
 }

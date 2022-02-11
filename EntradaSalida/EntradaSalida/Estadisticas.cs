@@ -88,7 +88,8 @@ namespace EntradaSalida
         private void Estadisticas_Load(object sender, EventArgs e)
         {
             string today = DateTime.Now.Date.ToShortDateString();
-            today = "06/12/2021";//quitar
+            today += " ";
+            today = "06/12/2021 ";//quitar
             calcularEntradasDelDia(today);
             calcularEntradasDelAno();
             PorcentajeAllAlumnos();
@@ -210,6 +211,11 @@ namespace EntradaSalida
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
