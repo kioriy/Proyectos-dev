@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "92d76d6d-4b13-455a-a383-7ef622696e5f": {
+      "ProjectGuid": "92d76d6d-4b13-455a-a383-7ef622696e5f",
+      "DisplayName": "Verificacion",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Archivos varios",
+      "ColorIndex": -1
+    },
+    "e07badf7-5eb9-43a9-93eb-b181764c785f": {
+      "ProjectGuid": "e07badf7-5eb9-43a9-93eb-b181764c785f",
+      "DisplayName": "PruebasUnitarias",
+      "ColorIndex": 1
+    },
+    "9b6504ef-2da4-4963-a62a-d080232cfb67": {
+      "ProjectGuid": "9b6504ef-2da4-4963-a62a-d080232cfb67",
+      "DisplayName": "VerificacionTests",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}
