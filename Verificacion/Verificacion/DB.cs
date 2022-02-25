@@ -36,27 +36,14 @@ namespace Verificacion
         {
             if ((int)Environment.OSVersion.Platform == 2)
             {
-                //System.Windows.Forms.MessageBox.Show("entre a la version test");
-                // parametrosConexion = "URI = file:dbmiPV.db; Version = 3; New = False; Compress = True;";
                 parametrosConexion = "URI = file:C://Users/alber/Documents/proyectos/EntradasSalidas/baseCETI.db; Version = 3; New = false; Compress = True;";
             }
 
             else if ((int)Environment.OSVersion.Platform == 4)
             {
-                //try
-                //{
-                //    File.ReadAllText("/home/pi/Dropbox-Uploader/MiPVGTest/test.json");
-
-                //ruta de la base de datos en versión TEST
-                //System.Windows.Forms.MessageBox.Show("entre a la version test");
-                //    parametrosConexion = "Data Source = /home/pi/Dropbox-Uploader/MiPVGTest/dbmiPV.db; Version = 3; New = False; Compress = True;";
-                //}
-                //catch(FileNotFoundException) 
-                //{
-                //ruta de la base de datos en varsión RELEASE
-                //System.Windows.Forms.MessageBox.Show("entre a la version release");
+         
                 parametrosConexion = "Data Source = /home/pi/Dropbox-Uploader/MiPVG/baseCETI.db; Version = 3; New = False; Compress = True;";
-                //}
+               
             }
 
             conexionBD = new SQLiteConnection(parametrosConexion);

@@ -17,18 +17,20 @@ namespace Verificacion
 {
     public partial class Form1 : Form
     {
+        private string pathWindows = "C:/Users/alber/Documents/Proyectos/Dropbox-Uploader/";
+        private string pathRasp = "/home/pi/Dropbox-Uploader/";
         public Form1()
         {
             InitializeComponent();
         }
-        public static void serial(Dictionary<string, string> dic)
+        public void serial(Dictionary<string, string> dic)
         {
             int os = (int)Environment.OSVersion.Platform;
             string path = "";
             if ((os != 4) && (os != 128))
-                 path = "C://Users/alber/OneDrive/Escritorio/Log.json";
+                path = pathWindows+"JSON/Log.json";
             else
-                 path = "/home/pi/Desktop/Log.json";
+                path = pathRasp+"JSON/Log.json";
             string document = "";
             List<Dictionary<string, string>> lal = new List<Dictionary<string, string>>();
 
@@ -40,16 +42,18 @@ namespace Verificacion
                 }
                 lal = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(document);
             }
-            catch (Exception ex) { }
-
-
+            catch (Exception ex) {
+                int x = 0;
+            }
+            if(lal==null)
+                lal = new List<Dictionary<string, string>>();
             lal.Add(dic);
             string json = JsonConvert.SerializeObject(lal, Formatting.Indented);//este se agrega
             System.IO.File.WriteAllText(path, json);
 
-            SubirJson("uploadLog.sh");
+            ExecuteJson("uploadLog.sh");
         }
-        public static void serialAlumos()
+        public void serialAlumos()
         {
             Alumno al = new Alumno();
             bool res= al.select("select * from Alumno ","Alumno");
@@ -59,9 +63,9 @@ namespace Verificacion
             int os = (int)Environment.OSVersion.Platform;
             string path = "";
             if ((os != 4) && (os != 128))
-                path = "C://Users/alber/OneDrive/Escritorio/ALUMNO.json";
+                path = pathWindows+"JSON/ALUMNO.json";
             else
-                 path = "home/pi/Desktop/ALUMNO.json";
+                 path = pathRasp+"JSON/ALUMNO.json";
            
             string json = JsonConvert.SerializeObject(list, Formatting.Indented);//este se agrega
             System.IO.File.WriteAllText(path, json);
@@ -69,7 +73,7 @@ namespace Verificacion
            
         }
 
-        public static bool SubirJson(string nombreSH) 
+        public  bool ExecuteJson(string nombreSH) 
             {
                 try
                 {
@@ -77,13 +81,13 @@ namespace Verificacion
 
                     if ((os != 4) && (os != 128))
                     {
-                    string app = $"C://Users/alber/OneDrive/Escritorio/{nombreSH}";
+                    string app = $"{pathWindows}{nombreSH}";
                     ProcessStartInfo info = new ProcessStartInfo(app);
                     Process.Start(info);
                 }
                     else
                     {
-                        string app = $"/home/pi/Desktop/{nombreSH}";
+                        string app = $"{pathRasp}{nombreSH}";
                         ProcessStartInfo info = new ProcessStartInfo(app);
                         Process.Start(info);
                     }
@@ -94,40 +98,19 @@ namespace Verificacion
                 }
             return true;
         }
-        private  void BajarJson(string nombreSh)
-        {
-            try
-            {
-                int os = (int)Environment.OSVersion.Platform;
-
-                if ((os != 4) && (os != 128))
-                {
-                    string app = $"c://Users/alber/OneDrive/Escritorio/{nombreSh}";
-                    ProcessStartInfo info = new ProcessStartInfo(app);
-                    Process.Start(info);
-                }
-                else
-                {
-                    string app = $"/home/pi/Desktop/{nombreSh}";
-                    ProcessStartInfo info = new ProcessStartInfo(app);
-                    Process.Start(info);
-                }
-            }
-            catch (Exception w)
-            {
-                MessageBox.Show($"{w}");
-            }
-        }
+     
 
         private async void DeserealizarJsonAlumno() {
             string path;
             List<Alumno> list = new List<Alumno>();
-            BajarJson("downloadAlumno.sh");
+           ExecuteJson("downloadAlumno.sh");
             int os = (int)Environment.OSVersion.Platform;
             if ((os != 4) && (os != 128))
-                path = "c://Users/alber/OneDrive/Escritorio/ALUMNO.json";/////////////////////////////////////////////////////////borrar
+                path = $"{pathWindows}JSON/ALUMNO.json";
             else
-                path = "/home/pi/Desktop/ALUMNO.json";
+            {
+                path = $"{pathRasp}JSON/ALUMNO.json";
+            }
             bool sleep = false;
 
             Task.Run(async () =>
@@ -152,6 +135,17 @@ namespace Verificacion
             if(sleep)
                 return;
             string document = "";
+            
+                string res="";
+                foreach (string line in System.IO.File.ReadLines(path))
+                {
+                    res += line;
+                }
+            if (res == "SUCCES")
+            {
+                return;
+            }
+
             try
             {
                 using (StreamReader jsonStream = File.OpenText(path))
@@ -166,9 +160,11 @@ namespace Verificacion
             selectVerificacionAll(list);
         }
 
-        private static void selectVerificacionAll(List<Alumno> list) {
+        private  void selectVerificacionAll(List<Alumno> list) {
             List<Alumno> list2 = new List<Alumno>();
             string query = "SELECT id_alumnos from Alumno as A where id_alumnos=";
+            if (list == null)
+                return;
             for (int x = 0; x < list.Count; x++) {
                 if (x == 0)
                     query += list[x].id_alumnos.ToString();
@@ -178,14 +174,27 @@ namespace Verificacion
             Alumno al = new Alumno();
             bool res=( al.select(query, "Alumno"));
             list2 = al.list<Alumno>();
+           // MessageBox.Show(query);
             insertarALumnos(res, list,list2);
         }
-        private static void insertarALumnos(bool res,List<Alumno>list, List<Alumno> list2) {
+        private void insertarALumnos(bool res,List<Alumno>list, List<Alumno> list2) {
            
             if (res == false) {
+                string path = "";
                 Alumno al = new Alumno();
-                if(list.Count>0)
-                al.multiInsert(list);
+                if (list.Count > 0)
+                {
+                    al.multiInsert(list);
+                    ExecuteJson("rm_ALUMNO.sh");
+                    int os = (int)Environment.OSVersion.Platform;
+                    if ((os != 4) && (os != 128))
+                        path = $"{pathWindows}JSON/ALUMNO.json";
+                    else
+                    {
+                        path = $"{pathRasp}JSON/ALUMNO.json";
+                    }
+                    File.WriteAllText(path, "SUCCES");
+                }
             }
             else {
                 foreach (var alumno in list2)
@@ -198,7 +207,15 @@ namespace Verificacion
 
         private void button2_Click(object sender, EventArgs e)
         {
-          DeserealizarJsonAlumno();
+           /* Alumno al = new Alumno();
+            al.select("SELECT * from ALUMNO", "ALUMNO");
+            List<Alumno> list = new List<Alumno>();
+            list = al.list<Alumno>();
+            foreach (var item in list)
+            {
+                MessageBox.Show(item.nombre_alumno);
+            }*/
+            DeserealizarJsonAlumno();
         }
         
 
