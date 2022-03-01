@@ -154,8 +154,8 @@ namespace EntradaSalida
                 case "insert":
                     return insert($"INSERT INTO {table} ({Attributes}) VALUES ({values})");
 
-                case "multiinsert":
-                    return insert($"INSERT INTO {table} ({Attributes}) VALUES {values}");
+                case "multiInsert":
+                    return insert($"INSERT INTO {table} ({IdAttribute}{Attributes}) VALUES {values}");
 
                 case "query":
                     return select($"SELECT {IdAttribute}{Attributes} FROM {table} {where}", table);

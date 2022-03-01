@@ -81,7 +81,7 @@ namespace EntradaSalida
                 if(res>0)
                 res = (100 / res);
                 res = res * NumFechas;
-                res = res * 2;/////////////////////////////////////////////////////////borrar pandemico
+              
                 allProcentajes.Add( decimal.Round(res, 2));
             }
             chart1.Series.Clear();
@@ -121,7 +121,7 @@ namespace EntradaSalida
                         listStatus.Add("Irregular");
                         break;
                     case 3:
-                        listStatus.Add("Pesimo");
+                        listStatus.Add("Malo");
                         break;
                 }
             }
@@ -142,8 +142,6 @@ namespace EntradaSalida
                       "WHERE hora_entrada > \"08:11\" and hora_entrada <= \"08:40\" " +
                       "GROUP BY \"grado y grupo\"","ALUMNO");
             al.dt = al.dataTable();
-            //dataGridView1.DataSource = grados;
-              //dataGridView1.DataSource = al.dt;
             for (int x = 0; x < grados.Rows.Count; x++) 
             {
                 retardos.Add(0);

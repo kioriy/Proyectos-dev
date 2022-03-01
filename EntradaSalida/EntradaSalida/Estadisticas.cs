@@ -31,8 +31,6 @@ namespace EntradaSalida
                 mns.Bcc.Add("crackenstain70@gmail.com");
                 mns.Body = cuerpo;
                 mns.BodyEncoding = System.Text.Encoding.UTF8;
-
-                //mns.IsBodyHtml = true;
                 mns.From = new System.Net.Mail.MailAddress("correopracticasudg@gmail.com");
                 System.Net.Mail.SmtpClient cliente = new System.Net.Mail.SmtpClient();
                 cliente.Credentials = new System.Net.NetworkCredential("crackenstain98@gmail.com", "eogjpjmjqqimpkcj");

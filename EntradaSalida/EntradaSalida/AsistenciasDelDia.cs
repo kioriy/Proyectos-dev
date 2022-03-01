@@ -34,7 +34,7 @@ namespace EntradaSalida
             dataGridView1.EnableHeadersVisualStyles = false;
             today = DateTime.Now.ToString("dd/MM/yyyy");
             today += " ";
-            today = "27/01/2022 ";/////////////////////////////////////////////////borrar
+            //today = "27/01/2022 ";/////////////////////////////////////////////////borrar
             regEntrada.select("SELECT " +
                 "A.nombre_alumno AS Nombre," +
                  "ES.hora_entrada AS Entrada," +
